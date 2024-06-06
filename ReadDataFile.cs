@@ -10,41 +10,49 @@ namespace BookManagementSystem
 {
     public class ReadDataFile
     {
-        private static ReadDataFile fileReader;
-        //private string FilePath = "SampleBooks.txt";
-
-        // Criteria for filtering books
-        private static int filterReleasedYear = 1990;
-        private static string[] allowedBookCategory = { "Computer Science", "Networking", "Mathematics", "Software Development" };
+        private static ReadDataFile fileReaderInstance;
+        private string filePath = "SampleBooks.txt";
 
         // Store books in a dictionary for efficient access and uniqueness by ISBN
-        private Dictionary<string, Book> booksDictionary = new Dictionary<string, Book>();
+        // private Dictionary<string, Book> booksDictionary = new Dictionary<string, Book>();
 
         // Singleton pattern to ensure only one instance of ReadDataFile
         public static ReadDataFile GetInstance()
         {
-            if (fileReader == null)
+            if (fileReaderInstance == null)
             {
-                fileReader = new ReadDataFile();
+                fileReaderInstance = new ReadDataFile();
             }
-            return fileReader;
+            return fileReaderInstance;
+        }
+
+
+        public static BookDataStructure LoadBooksFromFile(string filePath)
+        {
+            BookDataStructure bookDataStructure = new BookDataStructure();
+            ReadDataFile readDataFile = ReadDataFile.GetInstance();
+            readDataFile.filePath = filePath;
+
+            readDataFile.ReadFile(bookDataStructure);
+
+            return bookDataStructure;
+
         }
 
         // Method to read books from the file and populate the booksDictionary
-        public Dictionary<string, Book> ReadBooks(string filePath)
+        public void ReadFile(BookDataStructure bookDataStructure)
         {
             try
             {
                 if (!File.Exists(filePath))
                 {
                     MessageBox.Show("Error: File does not exist.");
-                    return null;
                 }
 
-                using (StreamReader reader = new StreamReader(filePath))
+                using (StreamReader streamReader = new StreamReader(filePath))
                 {
                     string line;
-                    while ((line = reader.ReadLine()) != null)
+                    while ((line = streamReader.ReadLine()) != null)
                     {
                         // Remove leading and trailing spaces from the line
                         line = line.Trim();
@@ -61,21 +69,18 @@ namespace BookManagementSystem
                             string category = bookDetails[5];
 
                             // Create a new Book object
-                            Book book = new Book(isbn, authors.ToList(), bookName, publisher, releasedYear, category);
+                            bookDataStructure.AddBook(new Book(isbn, authors.ToList(), bookName, publisher, releasedYear, category));
 
-                            if (FilterBook(book))
+                            /* // Add the book to the dictionary if it's not a duplicate ISBN
+                            if (!booksDictionary.ContainsKey(isbn))
                             {
-                                // Add the book to the dictionary if it's not a duplicate ISBN
-                                if (!booksDictionary.ContainsKey(isbn))
-                                {
-                                    booksDictionary.Add(isbn, book);
-                                    //MessageBox.Show("Book " + book.ToString() + " Successfully added.");
-                                }
-                                else
-                                {
-                                    MessageBox.Show($"Duplicate ISBN found: {isbn}. Skipping the book.");
-                                }
+                                booksDictionary.Add(isbn, book);
+                                //MessageBox.Show("Book " + book.ToString() + " Successfully added.");
                             }
+                            else
+                            {
+                                MessageBox.Show($"Duplicate ISBN found: {isbn}. Skipping the book.");
+                            } */
                         }
                         else
                         {
@@ -83,42 +88,12 @@ namespace BookManagementSystem
                         }
                     }
                 }
-                return booksDictionary;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred while reading the file: " + ex.Message);
-                return null;
             }
         }
-     
-        // Method to check if a book meets the filtering criteria
-        /*public static bool FilterBook(Book book)
-        {
-            bool filterFlag = false;
-            if (book.ReleasedYear == filterReleasedYear && allowedBookCategory.Contains(book.Category))
-            {
-                filterFlag = true;
-                Console.WriteLine($"Book loaded: {book.BookName}");
-            }
-            else
-            {
-                Console.WriteLine($"Error: Either the Release Year is older than {filterReleasedYear} or Invalid Category!");
-                filterFlag = false;
-            }
 
-            return filterFlag;
-        }*/
-
-        public bool FilterBook(Book book)
-        {
-            bool filterFlag = book.ReleasedYear >= filterReleasedYear && allowedBookCategory.Contains(book.Category);
-            if (!filterFlag)
-            {
-                MessageBox.Show($"Book '{book.BookName}' does not meet the criteria.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            return filterFlag;
-        }
-        
     }
 }

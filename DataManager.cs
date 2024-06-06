@@ -19,34 +19,27 @@ namespace BookManagementSystem
         }
 
         // Method to load books from a file
-        public Dictionary<string, Book> LoadBooksFromFile(string filePath)
+        public BookDataStructure LoadBooksFromFile(string filePath)
         {
-            var readDataFile = ReadDataFile.GetInstance();
-            return readDataFile.ReadBooks(filePath);
+            return ReadDataFile.LoadBooksFromFile(filePath);
         }
 
         // Method to add books manually
         public void AddBooksManually(Book book)
         {
-            bookDataStructure.Enqueue(book);
-            processBooksData.AddManuallyAddedBooks();
+            bookDataStructure.AddBook(book);
+           // processBooksData.AddManuallyAddedBooks();
         }
-        public void AddBooksFromLoadedFile(Dictionary<string, Book> loadedBooks)
+        public void AddBooksFromLoadedFile(BookDataStructure bookDataStructure)
         {
-            processBooksData.AddBooksFromLoadedFile(loadedBooks);
-        }
-
-        // Method to get total count of books
-        public int GetTotalBookCount()
-        {
-            return bookDataStructure.Count();
+            processBooksData.AddBooksFromLoadedFile(bookDataStructure);
         }
 
         // Method to display all categories of books
         public void DisplayAllCategories(DataGridView dataGridView)
         {
             processBooksData.DisplayAllCategories(dataGridView);
-        }
+        } 
 
         // Method to display books by a specific category
         public void DisplayBooksByCategory(string category, DataGridView dataGridView)

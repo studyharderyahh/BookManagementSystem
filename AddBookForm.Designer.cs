@@ -44,9 +44,7 @@
             this.FNameLabel = new System.Windows.Forms.Label();
             this.ISBNTxt = new System.Windows.Forms.TextBox();
             this.ISBNLabel = new System.Windows.Forms.Label();
-            this.AddedBooks = new System.Windows.Forms.DataGridView();
             this.BookInformationForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AddedBooks)).BeginInit();
             this.SuspendLayout();
             // 
             // BookInformationForm
@@ -67,7 +65,7 @@
             this.BookInformationForm.Controls.Add(this.ISBNTxt);
             this.BookInformationForm.Controls.Add(this.ISBNLabel);
             this.BookInformationForm.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BookInformationForm.Location = new System.Drawing.Point(107, 12);
+            this.BookInformationForm.Location = new System.Drawing.Point(79, 12);
             this.BookInformationForm.Name = "BookInformationForm";
             this.BookInformationForm.Size = new System.Drawing.Size(515, 559);
             this.BookInformationForm.TabIndex = 2;
@@ -95,7 +93,7 @@
             this.GoBackButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.GoBackButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GoBackButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.GoBackButton.Location = new System.Drawing.Point(147, 496);
+            this.GoBackButton.Location = new System.Drawing.Point(174, 495);
             this.GoBackButton.Name = "GoBackButton";
             this.GoBackButton.Size = new System.Drawing.Size(146, 42);
             this.GoBackButton.TabIndex = 15;
@@ -124,7 +122,7 @@
             this.AddBookButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.AddBookButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddBookButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AddBookButton.Location = new System.Drawing.Point(147, 420);
+            this.AddBookButton.Location = new System.Drawing.Point(174, 423);
             this.AddBookButton.Name = "AddBookButton";
             this.AddBookButton.Size = new System.Drawing.Size(146, 49);
             this.AddBookButton.TabIndex = 10;
@@ -204,30 +202,17 @@
             this.ISBNLabel.TabIndex = 0;
             this.ISBNLabel.Text = "ISBN";
             // 
-            // AddedBooks
-            // 
-            this.AddedBooks.AllowUserToOrderColumns = true;
-            this.AddedBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AddedBooks.Location = new System.Drawing.Point(645, 28);
-            this.AddedBooks.Name = "AddedBooks";
-            this.AddedBooks.RowHeadersWidth = 51;
-            this.AddedBooks.RowTemplate.Height = 24;
-            this.AddedBooks.Size = new System.Drawing.Size(451, 265);
-            this.AddedBooks.TabIndex = 3;
-            // 
             // AddBookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1108, 621);
-            this.Controls.Add(this.AddedBooks);
+            this.ClientSize = new System.Drawing.Size(672, 621);
             this.Controls.Add(this.BookInformationForm);
             this.Name = "AddBookForm";
             this.Text = "Add Book Form";
             this.BookInformationForm.ResumeLayout(false);
             this.BookInformationForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AddedBooks)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -250,6 +235,5 @@
         private System.Windows.Forms.Label FNameLabel;
         private System.Windows.Forms.TextBox ISBNTxt;
         private System.Windows.Forms.Label ISBNLabel;
-        private System.Windows.Forms.DataGridView AddedBooks;
     }
 }

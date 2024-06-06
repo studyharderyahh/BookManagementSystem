@@ -47,40 +47,27 @@ namespace BookManagementSystem
                 return;
             }
 
-            var booksDictionary = dataManager.LoadBooksFromFile(filePath);
+            var bookDataStructure = dataManager.LoadBooksFromFile(filePath);
             // Count total books
-            int totalBooks = booksDictionary.Count;
+            int totalBooks = bookDataStructure.Count();
 
-            if (booksDictionary != null && totalBooks > 0)
+            if (bookDataStructure != null && totalBooks > 0)
             {
-                // Clear existing items and add new ones
-                ListOfBookInfo.Items.Clear();
-                foreach (var book in booksDictionary.Values)
-                {
-                    ListOfBookInfo.Items.Add(book.ToString());
-                }
-
-                dataManager.AddBooksFromLoadedFile(booksDictionary);
-                MessageBox.Show($"{totalBooks} Books loaded and categorized successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataManager.AddBooksFromLoadedFile(bookDataStructure);
+                MessageBox.Show($"{totalBooks} Books loaded.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 MessageBox.Show("Failed to load books.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            filePathTxt.Clear();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             // Trigger the Closed event and show the Dashboard
             this.Close(); 
-        }
-
-        private void ViewBooksButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            // Use ShowDialog instead of Show, Becaue I feel like it's easier
-            ViewBooksForm viewBooksForm = new ViewBooksForm(dataManager);
-            viewBooksForm.Show();
         }
     }
 }

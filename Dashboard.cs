@@ -38,23 +38,27 @@ namespace BookManagementSystem
         private void LoadBookFileButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var loadBookFileForm = new LoadBookFileForm(dataManager);
-            loadBookFileForm.Show();
-            //RefreshView();
+            LoadBookFileForm loadBookFile = new LoadBookFileForm(dataManager);
+            // Show Dashboard again when LoadBookFile is closed
+            loadBookFile.Closed += (s, args) => this.Show();
+            loadBookFile.Show();
         }
 
         private void AddBookButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var addBookForm = new AddBookForm(dataManager);
+            AddBookForm addBookForm = new AddBookForm(dataManager);
+            // Show Dashboard again when AddBookForm is closed
+            addBookForm.Closed += (s, args) => this.Show();
             addBookForm.Show();
-            //RefreshView();
         }
 
         private void ViewBooksButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var viewBooksForm = new ViewBooksForm(dataManager);
+            ViewBooksForm viewBooksForm = new ViewBooksForm(dataManager);
+            // Show Dashboard again when ViewBooksForm is closed
+            viewBooksForm.Closed += (s, args) => this.Show();
             viewBooksForm.Show();
         }
     }

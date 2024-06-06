@@ -1,21 +1,27 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BookManagementSystem
 {
-    public class BookDataStructure
+    public class BookDataStructure : IEnumerable<Book>
     {
+        // Criteria for filtering books
+        private static int filterReleasedYear = 1990;
+        private static string[] allowedBookCategory = { "Computer Science", "Networking", "Mathematics", "Software Development" };
+
         private static readonly object lockObject = new object();
         private static BookDataStructure instance;
-        public Queue<Book> AcceptableBooks { get; private set; }
+        public Queue<Book> books { get; private set; }
 
         // Constructor to initialize the book queue
         public BookDataStructure()
         {
-            AcceptableBooks = new Queue<Book>();
+            books = new Queue<Book>();
         }
 
         // Singleton pattern to ensure only one instance of BookDataStructure
@@ -32,29 +38,44 @@ namespace BookManagementSystem
         }
 
         // Method to enqueue a book if it meets the required conditions
-        public void Enqueue(Book book)
+        public void AddBook(Book book)
         {
             if (FilterBook(book))
             {
-                AcceptableBooks.Enqueue(book);
+                books.Enqueue(book);
             }
             else
             {
-                throw new InvalidOperationException($"Book '{book.BookName}' does not meet the conditions.");
+                // Check if it can be logged
+                MessageBox.Show($"Book Name '{book.BookName}' does not meet the conditions.");
             }
         }
 
-        // Method to get the count of books in the queue
-        public int Count()
+        // Check if the book meets the required conditions
+        public bool FilterBook(Book book)
         {
-            return AcceptableBooks.Count;
+            bool filterFlag = book.ReleasedYear >= filterReleasedYear && allowedBookCategory.Contains(book.Category);
+           /* if (!filterFlag)
+            {
+                MessageBox.Show($"Book '{book.BookName}' does not meet the criteria.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } */
+            return filterFlag;
         }
 
-        // Check if the book meets the required conditions
-        private bool FilterBook(Book book)
+        public int Count()
         {
-            string[] validCategories = { "Computer Science", "Networking", "Mathematics", "Software Development" };
-            return book.ReleasedYear > 1990 && validCategories.Contains(book.Category);
+            return books.Count;
         }
+
+        public IEnumerator<Book> GetEnumerator()
+        {
+            return books.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
     }
 }

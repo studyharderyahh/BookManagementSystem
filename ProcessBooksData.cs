@@ -30,42 +30,19 @@ namespace BookManagementSystem
         // Separate method for processing books added manually
         public void AddManuallyAddedBooks()
         {
-            foreach (var book in bookDataStructure.AcceptableBooks)
+            foreach (var book in bookDataStructure.books)
             {
-                if (FilterBook(book))
-                {
-                    categorizedBooks[book.Category].Push(book);
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Book '{book.BookName}' does not meet the conditions.");
-                }
+                categorizedBooks[book.Category].Push(book);
             }
         }
 
         // Separate method for processing books loaded from a file
-        public void AddBooksFromLoadedFile(Dictionary<string, Book> loadedBooks)
+        public void AddBooksFromLoadedFile(BookDataStructure bookDataStructure)
         {
-            foreach (var bookEntry in loadedBooks)
+            foreach (var book in bookDataStructure.books)
             {
-                Book book = bookEntry.Value;
-
-                if (FilterBook(book))
-                {
-                    categorizedBooks[book.Category].Push(book);
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Book '{book.BookName}' does not meet the conditions.");
-                }
+                categorizedBooks[book.Category].Push(book);
             }
-        }
-
-        // Method to check if a book is valid based on the criteria
-        private bool FilterBook(Book book)
-        {
-            string[] validCategories = { "Computer Science", "Networking", "Mathematics", "Software Development" };
-            return book.ReleasedYear > 1990 && validCategories.Contains(book.Category);
         }
 
         // Method to display books of a specific category in a DataGridView
@@ -87,6 +64,19 @@ namespace BookManagementSystem
         {
             var allBooks = categorizedBooks.Values.SelectMany(stack => stack.ToArray()).ToList();
             dataGridView.DataSource = allBooks;
+
+
+           /* // Construct a message string to display all books
+            StringBuilder message = new StringBuilder();
+            foreach (var book in allBooks)
+            {
+                message.AppendLine(book.ToString());
+            }
+
+            // Display the message in a MessageBox
+            MessageBox.Show(message.ToString());
+           */
+
         }
     }
 }
