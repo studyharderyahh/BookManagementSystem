@@ -16,15 +16,12 @@ namespace BookManagementSystem
         private string filePath;
         // Field to store the ReadDataFile instance
         private ReadDataFile readDataFile;
-        // Field to store the ProcessBooksData instance
-        private ProcessBooksData processBooksData;
+        private readonly DataManager dataManager;
 
-        public LoadBookFileForm(ProcessBooksData processBooksData)
+        public LoadBookFileForm(DataManager dataManager)
         {
             InitializeComponent();
-            // Initialize the ReadDataFile instance
-            readDataFile = ReadDataFile.GetInstance();
-            this.processBooksData = processBooksData;
+            this.dataManager = dataManager;
         }
 
 
@@ -50,8 +47,11 @@ namespace BookManagementSystem
                 return;
             }
 
-            var booksDictionary = readDataFile.ReadBooks(filePath);
-            if (booksDictionary != null && booksDictionary.Count > 0)
+            var booksDictionary = dataManager.LoadBooksFromFile(filePath);
+            // Count total books
+            int totalBooks = booksDictionary.Count;
+
+            if (booksDictionary != null && totalBooks > 0)
             {
                 // Clear existing items and add new ones
                 ListOfBookInfo.Items.Clear();
@@ -60,9 +60,7 @@ namespace BookManagementSystem
                     ListOfBookInfo.Items.Add(book.ToString());
                 }
 
-                // Count total books
-                int totalBooks = booksDictionary.Count;
-                processBooksData.CategorizeBooks(booksDictionary);
+                dataManager.AddBooksFromLoadedFile(booksDictionary);
                 MessageBox.Show($"{totalBooks} Books loaded and categorized successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -80,12 +78,8 @@ namespace BookManagementSystem
         private void ViewBooksButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ViewBooksForm viewBooksForm = new ViewBooksForm(processBooksData);
-            viewBooksForm.Closed += (s, args) => {
-                this.Hide();
-                Dashboard dashboard = new Dashboard();
-                dashboard.Show();
-            };
+            // Use ShowDialog instead of Show, Becaue I feel like it's easier
+            ViewBooksForm viewBooksForm = new ViewBooksForm(dataManager);
             viewBooksForm.Show();
         }
     }

@@ -12,14 +12,12 @@ namespace BookManagementSystem
 {
     public partial class AddBookForm : Form
     {
-        private readonly ProcessBooksData processBooksData;
-        private BookDataStructure bookDataStructure;
+        private readonly DataManager dataManager;
 
-        public AddBookForm(ProcessBooksData processBooksData)
+        public AddBookForm(DataManager dataManager)
         {
             InitializeComponent();
-            bookDataStructure = new BookDataStructure();
-            this.processBooksData = processBooksData;
+            this.dataManager = dataManager;
         }
 
         private void AddBookButton_Click(object sender, EventArgs e)
@@ -46,11 +44,13 @@ namespace BookManagementSystem
 
                 // Create new Book object
                 Book newBook = new Book(isbn, authorsName, bookName, publisher, releasedYear, category);
-                bookDataStructure.Enqueue(newBook);
+                dataManager.AddBooksManually(newBook);
                 MessageBox.Show("Book added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ClearFields();
 
+                // Refresh the display of books in the ViewBooksForm
+                dataManager.AddBooksManually(newBook);
             }
             catch (Exception ex)
             {
