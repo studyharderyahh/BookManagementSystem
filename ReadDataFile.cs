@@ -13,9 +13,6 @@ namespace BookManagementSystem
         private static ReadDataFile fileReaderInstance;
         private string filePath = "SampleBooks.txt";
 
-        // Store books in a dictionary for efficient access and uniqueness by ISBN
-        // private Dictionary<string, Book> booksDictionary = new Dictionary<string, Book>();
-
         // Singleton pattern to ensure only one instance of ReadDataFile
         public static ReadDataFile GetInstance()
         {
@@ -70,17 +67,6 @@ namespace BookManagementSystem
 
                             // Create a new Book object
                             bookDataStructure.AddBook(new Book(isbn, authors.ToList(), bookName, publisher, releasedYear, category));
-
-                            /* // Add the book to the dictionary if it's not a duplicate ISBN
-                            if (!booksDictionary.ContainsKey(isbn))
-                            {
-                                booksDictionary.Add(isbn, book);
-                                //MessageBox.Show("Book " + book.ToString() + " Successfully added.");
-                            }
-                            else
-                            {
-                                MessageBox.Show($"Duplicate ISBN found: {isbn}. Skipping the book.");
-                            } */
                         }
                         else
                         {

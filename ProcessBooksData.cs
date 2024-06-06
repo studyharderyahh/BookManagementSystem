@@ -11,10 +11,9 @@ namespace BookManagementSystem
     {
         // Dictionary to store stacks of books based on their category
         private readonly Dictionary<string, Stack<Book>> categorizedBooks;
-        private readonly BookDataStructure bookDataStructure;
 
         // Constructor
-        public ProcessBooksData(BookDataStructure bookDataStructure)
+        public ProcessBooksData()
         {
             categorizedBooks = new Dictionary<string, Stack<Book>>()
             {
@@ -24,16 +23,14 @@ namespace BookManagementSystem
                 { "Mathematics", new Stack<Book>() },
                 { "Software Development", new Stack<Book>() }
             };
-            this.bookDataStructure = bookDataStructure;
         }
 
         // Separate method for processing books added manually
-        public void AddManuallyAddedBooks()
+        public void AddManuallyAddedBooks(Book book)
         {
-            foreach (var book in bookDataStructure.books)
-            {
-                categorizedBooks[book.Category].Push(book);
-            }
+
+            categorizedBooks[book.Category].Push(book);
+
         }
 
         // Separate method for processing books loaded from a file
@@ -66,7 +63,8 @@ namespace BookManagementSystem
             dataGridView.DataSource = allBooks;
 
 
-           /* // Construct a message string to display all books
+           /* // For Debugging purposes
+            // Construct a message string to display all books
             StringBuilder message = new StringBuilder();
             foreach (var book in allBooks)
             {

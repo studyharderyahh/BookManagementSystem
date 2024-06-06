@@ -15,7 +15,7 @@ namespace BookManagementSystem
         public DataManager()
         {
             bookDataStructure = BookDataStructure.GetInstance();
-            processBooksData = new ProcessBooksData(bookDataStructure);
+            processBooksData = new ProcessBooksData();
         }
 
         // Method to load books from a file
@@ -28,7 +28,7 @@ namespace BookManagementSystem
         public void AddBooksManually(Book book)
         {
             bookDataStructure.AddBook(book);
-           // processBooksData.AddManuallyAddedBooks();
+            processBooksData.AddManuallyAddedBooks(book);
         }
         public void AddBooksFromLoadedFile(BookDataStructure bookDataStructure)
         {

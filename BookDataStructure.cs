@@ -40,25 +40,56 @@ namespace BookManagementSystem
         // Method to enqueue a book if it meets the required conditions
         public void AddBook(Book book)
         {
-            if (FilterBook(book))
+            /*
+             // For debugging purpose only
+             StringBuilder message = new StringBuilder();
+             int count = books.Count;
+
+             // Dequeue each book and append its string representation to the message
+             for (int i = 0; i < count; i++)
+             {
+                 Book bk = books.Dequeue();
+                 message.AppendLine(bk.ToString());
+                 // Enqueue the book back to the queue
+                 books.Enqueue(bk);
+             }
+
+             // Display the message in a MessageBox
+             MessageBox.Show(message.ToString());
+
+            */
+
+            if ( !isBookAlreadyPresent(book) )
             {
-                books.Enqueue(book);
+                if (FilterBook(book))
+                {
+                    books.Enqueue(book);
+                }
+                else
+                {
+                    // Check if it can be logged
+                    MessageBox.Show($"Book Name '{book.BookName}' does not meet the conditions.");
+                }
             }
             else
             {
-                // Check if it can be logged
-                MessageBox.Show($"Book Name '{book.BookName}' does not meet the conditions.");
+                MessageBox.Show($"Duplicate Book found: {book.BookName}. Skipping the book.");
             }
+
+
         }
 
         // Check if the book meets the required conditions
         public bool FilterBook(Book book)
         {
             bool filterFlag = book.ReleasedYear >= filterReleasedYear && allowedBookCategory.Contains(book.Category);
-           /* if (!filterFlag)
-            {
-                MessageBox.Show($"Book '{book.BookName}' does not meet the criteria.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } */
+            return filterFlag;
+        }
+
+        // Check if Book is already present by ISBN
+        public bool isBookAlreadyPresent(Book book) {
+
+            bool filterFlag = books.Contains(book);
             return filterFlag;
         }
 

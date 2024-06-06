@@ -49,8 +49,6 @@ namespace BookManagementSystem
 
                 ClearFields();
 
-                // Refresh the display of books in the ViewBooksForm
-                dataManager.AddBooksManually(newBook);
             }
             catch (Exception ex)
             {
