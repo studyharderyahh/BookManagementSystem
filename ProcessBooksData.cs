@@ -27,10 +27,26 @@ namespace BookManagementSystem
             this.bookDataStructure = bookDataStructure;
         }
 
-        // Method to categorize books based on their categories
-        public void CategorizeBooks(Dictionary<string, Book> books)
+        // Separate method for processing books added manually
+        public void AddManuallyAddedBooks()
         {
-            foreach (var bookEntry in books)
+            foreach (var book in bookDataStructure.AcceptableBooks)
+            {
+                if (FilterBook(book))
+                {
+                    categorizedBooks[book.Category].Push(book);
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Book '{book.BookName}' does not meet the conditions.");
+                }
+            }
+        }
+
+        // Separate method for processing books loaded from a file
+        public void AddBooksFromLoadedFile(Dictionary<string, Book> loadedBooks)
+        {
+            foreach (var bookEntry in loadedBooks)
             {
                 Book book = bookEntry.Value;
 

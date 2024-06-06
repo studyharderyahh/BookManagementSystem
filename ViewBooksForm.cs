@@ -12,38 +12,39 @@ namespace BookManagementSystem
 {
     public partial class ViewBooksForm : Form
     {
-        private readonly ProcessBooksData processBooksData;
+        private readonly DataManager dataManager;
 
-        public ViewBooksForm(ProcessBooksData processBooksData)
+        public ViewBooksForm(DataManager dataManager)
         {
             InitializeComponent();
-            this.processBooksData = processBooksData;
-            processBooksData.DisplayAllCategories(dataGridViewBooks);
+            this.dataManager = dataManager;
+            // Always refresh the display when the form is opened
+            dataManager.DisplayAllCategories(dataGridViewBooks);
         }
 
         private void AllListButton_Click(object sender, EventArgs e)
         {
-            processBooksData.DisplayAllCategories(dataGridViewBooks);
+            dataManager.DisplayAllCategories(dataGridViewBooks);
         }
 
         private void ComputerScienceButton_Click(object sender, EventArgs e)
         {
-            processBooksData.DisplayBooksByCategory("Computer Science", dataGridViewBooks);
+            dataManager.DisplayBooksByCategory("Computer Science", dataGridViewBooks);
         }
 
         private void NetworkingButton_Click(object sender, EventArgs e)
         {
-            processBooksData.DisplayBooksByCategory("Networking", dataGridViewBooks);
+            dataManager.DisplayBooksByCategory("Networking", dataGridViewBooks);
         }
 
         private void MathematicsButton_Click(object sender, EventArgs e)
         {
-            processBooksData.DisplayBooksByCategory("Mathematics", dataGridViewBooks);
+            dataManager.DisplayBooksByCategory("Mathematics", dataGridViewBooks);
         }
 
         private void SoftwareDevelopmentButton_Click(object sender, EventArgs e)
         {
-            processBooksData.DisplayBooksByCategory("Software Development", dataGridViewBooks);
+            dataManager .DisplayBooksByCategory("Software Development", dataGridViewBooks);
         }
 
         private void BackButtom_Click(object sender, EventArgs e)
