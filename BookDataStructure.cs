@@ -59,22 +59,16 @@ namespace BookManagementSystem
 
             */
 
-            if ( !isBookAlreadyPresent(book) )
+            if (FilterBook(book))
             {
-                if (FilterBook(book))
-                {
-                    books.Enqueue(book);
-                }
-                else
-                {
-                    // Check if it can be logged
-                    MessageBox.Show($"Book Name '{book.BookName}' does not meet the conditions.");
-                }
+                books.Enqueue(book);
             }
             else
             {
-                MessageBox.Show($"Duplicate Book found: {book.BookName}. Skipping the book.");
+                // Check if it can be logged
+                MessageBox.Show($"Book Name '{book.BookName}' does not meet the conditions.");
             }
+
 
 
         }
@@ -86,12 +80,6 @@ namespace BookManagementSystem
             return filterFlag;
         }
 
-        // Check if Book is already present by ISBN
-        public bool isBookAlreadyPresent(Book book) {
-
-            bool filterFlag = books.Contains(book);
-            return filterFlag;
-        }
 
         public int Count()
         {

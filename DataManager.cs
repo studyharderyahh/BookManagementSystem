@@ -9,8 +9,9 @@ namespace BookManagementSystem
 {
     public class DataManager
     {
-        private readonly BookDataStructure bookDataStructure;
+        private readonly BookDataStructure bookDataStructure; 
         private readonly ProcessBooksData processBooksData;
+
 
         public DataManager()
         {
@@ -25,10 +26,17 @@ namespace BookManagementSystem
         }
 
         // Method to add books manually
-        public void AddBooksManually(Book book)
+        public void AddBooksManually(BookDataStructure bookDataStructure, Book book)
         {
-            bookDataStructure.AddBook(book);
-            processBooksData.AddManuallyAddedBooks(book);
+            if ( !bookDataStructure.Contains(book) )
+            {
+                bookDataStructure.AddBook(book);
+                processBooksData.AddManuallyAddedBooks(book);
+            }
+            else {
+                MessageBox.Show($"Duplicate Book found: {book.BookName}. Skipping the book.");
+            }
+
         }
         public void AddBooksFromLoadedFile(BookDataStructure bookDataStructure)
         {
@@ -45,6 +53,12 @@ namespace BookManagementSystem
         public void DisplayBooksByCategory(string category, DataGridView dataGridView)
         {
             processBooksData.DisplayBooksByCategory(category, dataGridView);
+        }
+
+        // Getter for bookDataStructure
+        public BookDataStructure BookDataStructure
+        {
+            get { return bookDataStructure; }
         }
     }
 }
