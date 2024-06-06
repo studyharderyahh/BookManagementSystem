@@ -91,7 +91,7 @@
             this.LoadBookFileButton.Image = ((System.Drawing.Image)(resources.GetObject("LoadBookFileButton.Image")));
             this.LoadBookFileButton.Location = new System.Drawing.Point(65, 69);
             this.LoadBookFileButton.Name = "LoadBookFileButton";
-            this.LoadBookFileButton.Size = new System.Drawing.Size(221, 200);
+            this.LoadBookFileButton.Size = new System.Drawing.Size(221, 211);
             this.LoadBookFileButton.TabIndex = 3;
             this.LoadBookFileButton.Text = "Load Book File";
             this.LoadBookFileButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -105,7 +105,7 @@
             this.AddBookButton.Image = ((System.Drawing.Image)(resources.GetObject("AddBookButton.Image")));
             this.AddBookButton.Location = new System.Drawing.Point(344, 69);
             this.AddBookButton.Name = "AddBookButton";
-            this.AddBookButton.Size = new System.Drawing.Size(232, 200);
+            this.AddBookButton.Size = new System.Drawing.Size(232, 211);
             this.AddBookButton.TabIndex = 1;
             this.AddBookButton.Text = "Add New Book";
             this.AddBookButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -119,7 +119,7 @@
             this.ViewBooksButton.Image = ((System.Drawing.Image)(resources.GetObject("ViewBooksButton.Image")));
             this.ViewBooksButton.Location = new System.Drawing.Point(638, 69);
             this.ViewBooksButton.Name = "ViewBooksButton";
-            this.ViewBooksButton.Size = new System.Drawing.Size(219, 200);
+            this.ViewBooksButton.Size = new System.Drawing.Size(219, 211);
             this.ViewBooksButton.TabIndex = 2;
             this.ViewBooksButton.Text = "View Book";
             this.ViewBooksButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

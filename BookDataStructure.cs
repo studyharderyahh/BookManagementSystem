@@ -68,9 +68,6 @@ namespace BookManagementSystem
                 // Check if it can be logged
                 MessageBox.Show($"Book Name '{book.BookName}' does not meet the conditions.");
             }
-
-
-
         }
 
         // Check if the book meets the required conditions

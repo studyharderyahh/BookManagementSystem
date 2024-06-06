@@ -37,6 +37,7 @@
             this.SoftwareDevelopmentButton = new System.Windows.Forms.Button();
             this.AllListButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DeleteTopValueButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooks)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,9 +71,10 @@
             this.ComputerScienceButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ComputerScienceButton.Location = new System.Drawing.Point(108, 107);
             this.ComputerScienceButton.Name = "ComputerScienceButton";
-            this.ComputerScienceButton.Size = new System.Drawing.Size(202, 48);
+            this.ComputerScienceButton.Size = new System.Drawing.Size(218, 48);
             this.ComputerScienceButton.TabIndex = 20;
             this.ComputerScienceButton.Text = "Computer Science";
+            this.ComputerScienceButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ComputerScienceButton.UseVisualStyleBackColor = false;
             this.ComputerScienceButton.Click += new System.EventHandler(this.ComputerScienceButton_Click);
             // 
@@ -81,9 +83,9 @@
             this.BackButtom.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BackButtom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BackButtom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BackButtom.Location = new System.Drawing.Point(389, 546);
+            this.BackButtom.Location = new System.Drawing.Point(565, 537);
             this.BackButtom.Name = "BackButtom";
-            this.BackButtom.Size = new System.Drawing.Size(146, 46);
+            this.BackButtom.Size = new System.Drawing.Size(212, 65);
             this.BackButtom.TabIndex = 21;
             this.BackButtom.Text = "Back";
             this.BackButtom.UseVisualStyleBackColor = false;
@@ -94,7 +96,7 @@
             this.NetworkingButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.NetworkingButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NetworkingButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.NetworkingButton.Location = new System.Drawing.Point(337, 107);
+            this.NetworkingButton.Location = new System.Drawing.Point(347, 107);
             this.NetworkingButton.Name = "NetworkingButton";
             this.NetworkingButton.Size = new System.Drawing.Size(163, 48);
             this.NetworkingButton.TabIndex = 22;
@@ -150,12 +152,26 @@
             this.panel1.Size = new System.Drawing.Size(1068, 82);
             this.panel1.TabIndex = 26;
             // 
+            // DeleteTopValueButton
+            // 
+            this.DeleteTopValueButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.DeleteTopValueButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteTopValueButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DeleteTopValueButton.Location = new System.Drawing.Point(154, 537);
+            this.DeleteTopValueButton.Name = "DeleteTopValueButton";
+            this.DeleteTopValueButton.Size = new System.Drawing.Size(280, 65);
+            this.DeleteTopValueButton.TabIndex = 27;
+            this.DeleteTopValueButton.Text = "Delete First Book Record";
+            this.DeleteTopValueButton.UseVisualStyleBackColor = false;
+            this.DeleteTopValueButton.Click += new System.EventHandler(this.DeleteTopValueButton_Click);
+            // 
             // ViewBooksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(972, 614);
+            this.Controls.Add(this.DeleteTopValueButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.AllListButton);
             this.Controls.Add(this.SoftwareDevelopmentButton);
@@ -183,5 +199,6 @@
         private System.Windows.Forms.Button SoftwareDevelopmentButton;
         private System.Windows.Forms.Button AllListButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button DeleteTopValueButton;
     }
 }

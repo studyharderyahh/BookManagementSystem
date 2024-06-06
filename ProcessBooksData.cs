@@ -11,6 +11,8 @@ namespace BookManagementSystem
     {
         // Dictionary to store stacks of books based on their category
         private readonly Dictionary<string, Stack<Book>> categorizedBooks;
+        private static int filterReleasedYear = 1990;
+        private static string[] allowedBookCategory = { "Computer Science", "Networking", "Mathematics", "Software Development" };
 
         // Constructor
         public ProcessBooksData()
@@ -28,9 +30,11 @@ namespace BookManagementSystem
         // Separate method for processing books added manually
         public void AddManuallyAddedBooks(Book book)
         {
-
-            categorizedBooks[book.Category].Push(book);
-
+            if (book.ReleasedYear >= filterReleasedYear && allowedBookCategory.Contains(book.Category))
+            {
+                categorizedBooks[book.Category].Push(book);
+            }
+            
         }
 
         // Separate method for processing books loaded from a file
@@ -62,7 +66,6 @@ namespace BookManagementSystem
             var allBooks = categorizedBooks.Values.SelectMany(stack => stack.ToArray()).ToList();
             dataGridView.DataSource = allBooks;
 
-
            /* // For Debugging purposes
             // Construct a message string to display all books
             StringBuilder message = new StringBuilder();
@@ -75,6 +78,26 @@ namespace BookManagementSystem
             MessageBox.Show(message.ToString());
            */
 
+        }
+
+        // Method to delete the top book from a specific category stack
+        public void DeleteTopBook(string selectedCategory)
+        {
+            if (categorizedBooks.ContainsKey(selectedCategory))
+            {
+                if (categorizedBooks[selectedCategory].Count > 0)
+                {
+                    categorizedBooks[selectedCategory].Pop();
+                }
+                else
+                {
+                    throw new ArgumentException($"No books available in the '{selectedCategory}' category to delete.");
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Category '{selectedCategory}' does not exist.");
+            }
         }
     }
 }

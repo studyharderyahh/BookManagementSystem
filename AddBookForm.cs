@@ -44,8 +44,11 @@ namespace BookManagementSystem
 
                 // Create new Book object
                 Book newBook = new Book(isbn, authorsName, bookName, publisher, releasedYear, category);
-                dataManager.AddBooksManually(dataManager.BookDataStructure, newBook);
-                MessageBox.Show("Book added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataManager.AddBooksManually(newBook);
+                
+                if (dataManager.BookDataStructure.Contains(newBook)) { 
+                    MessageBox.Show("Book added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 ClearFields();
 

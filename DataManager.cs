@@ -26,16 +26,11 @@ namespace BookManagementSystem
         }
 
         // Method to add books manually
-        public void AddBooksManually(BookDataStructure bookDataStructure, Book book)
+        public void AddBooksManually(Book book)
         {
-            if ( !bookDataStructure.Contains(book) )
-            {
-                bookDataStructure.AddBook(book);
-                processBooksData.AddManuallyAddedBooks(book);
-            }
-            else {
-                MessageBox.Show($"Duplicate Book found: {book.BookName}. Skipping the book.");
-            }
+
+            bookDataStructure.AddBook(book);
+            processBooksData.AddManuallyAddedBooks(book);
 
         }
         public void AddBooksFromLoadedFile(BookDataStructure bookDataStructure)
@@ -53,6 +48,11 @@ namespace BookManagementSystem
         public void DisplayBooksByCategory(string category, DataGridView dataGridView)
         {
             processBooksData.DisplayBooksByCategory(category, dataGridView);
+        }
+
+        internal void DeleteTopBook(string selectedCategory)
+        {
+            processBooksData.DeleteTopBook(selectedCategory);
         }
 
         // Getter for bookDataStructure
