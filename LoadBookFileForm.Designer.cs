@@ -32,7 +32,7 @@
             this.UploadFileButton = new System.Windows.Forms.Button();
             this.ISBNLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BrosweFilePathButton = new System.Windows.Forms.Button();
+            this.BrowseFilePathButton = new System.Windows.Forms.Button();
             this.filePathTxt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +75,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.BrosweFilePathButton);
+            this.groupBox1.Controls.Add(this.BrowseFilePathButton);
             this.groupBox1.Controls.Add(this.filePathTxt);
             this.groupBox1.Controls.Add(this.ISBNLabel);
             this.groupBox1.Controls.Add(this.UploadFileButton);
@@ -87,18 +87,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Browser Your File Below";
             // 
-            // BrosweFilePathButton
+            // BrowseFilePathButton
             // 
-            this.BrosweFilePathButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.BrosweFilePathButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BrosweFilePathButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BrosweFilePathButton.Location = new System.Drawing.Point(502, 119);
-            this.BrosweFilePathButton.Name = "BrosweFilePathButton";
-            this.BrosweFilePathButton.Size = new System.Drawing.Size(108, 42);
-            this.BrosweFilePathButton.TabIndex = 20;
-            this.BrosweFilePathButton.Text = "Broswe";
-            this.BrosweFilePathButton.UseVisualStyleBackColor = false;
-            this.BrosweFilePathButton.Click += new System.EventHandler(this.BrosweFilePathButton_Click);
+            this.BrowseFilePathButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BrowseFilePathButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BrowseFilePathButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BrowseFilePathButton.Location = new System.Drawing.Point(502, 119);
+            this.BrowseFilePathButton.Name = "BrowseFilePathButton";
+            this.BrowseFilePathButton.Size = new System.Drawing.Size(108, 42);
+            this.BrowseFilePathButton.TabIndex = 20;
+            this.BrowseFilePathButton.Text = "Browse";
+            this.BrowseFilePathButton.UseVisualStyleBackColor = false;
+            this.BrowseFilePathButton.Click += new System.EventHandler(this.BrosweFilePathButton_Click);
             // 
             // filePathTxt
             // 
@@ -132,6 +132,6 @@
         private System.Windows.Forms.Label ISBNLabel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox filePathTxt;
-        private System.Windows.Forms.Button BrosweFilePathButton;
+        private System.Windows.Forms.Button BrowseFilePathButton;
     }
 }
