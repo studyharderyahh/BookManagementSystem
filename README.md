@@ -43,7 +43,7 @@ The application is developed using C# within the .NET framework and features a W
 ### Files and Classes
 
 - **`Program.cs`**
-  - Entry point for the application. Starts the main form (`Dashboard`).
+  - Entry point for the application. Starts the main form (Dashboard).
 
 - **`AddBookForm.cs`**
   - Form for adding a new book manually. Validates input and adds book to the system.
@@ -64,13 +64,13 @@ The application is developed using C# within the .NET framework and features a W
   - Manages a queue of books with filtering criteria. Implements a singleton pattern.
 
 - **`DataManager.cs`**
-  - Handles operations such as loading books, adding books, and displaying books. Interfaces with `BookDataStructure` and `ProcessBooksData`.
+  - Handles operations such as loading books, adding books, and displaying books. Interfaces with BookDataStructure and ProcessBooksData.
 
 - **`ProcessBooksData.cs`**
   - Processes and manages categorized book stacks. Provides methods for adding, displaying, and deleting books.
 
 - **`ReadDataFile.cs`**
-  - Reads book data from a file and populates the `BookDataStructure`. Uses the singleton pattern.
+  - Reads book data from a file and populates the BookDataStructure. Uses the singleton pattern.
  
 ## Contriution: 
 Designed by Elisa, for Applied Data Structure final project. 
